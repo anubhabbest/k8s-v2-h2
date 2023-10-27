@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: k8sbuddies
+spec:
+  selector:
+    matchLabels:
+      app: k8sbuddies
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: k8sbuddies
+    spec:
+      containers:
+        - name: k8sbuddies
+          image: bootcampcommonregistry.azurecr.io/k8buddies-festv2:v2.0
+          ports:
+            - containerPort: 8080
+      imagePullSecrets:
+        - name: my-registry-secret
